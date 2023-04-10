@@ -10,7 +10,7 @@ sudo apt-get -y install haproxy
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
 echo '
-frontend codingverse.tech
+frontend stevebanks03.tech
         bind *:80
         default_backend web_servers
 backend web_servers
