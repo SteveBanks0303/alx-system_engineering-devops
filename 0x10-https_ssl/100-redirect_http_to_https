@@ -36,11 +36,21 @@ backend app
   mode http
   server 137909-web-01 174.129.54.207:80 check
   server 137909-web-02 54.208.55.182:80 check
-
-frontend http_front
+ 
+ frontend http_frontend
     bind *:80
-    reqadd X-Forwarded-Proto:\ http
-    redirect scheme https code 301 if !{ ssl_fc }
+    mode http
+    redirect scheme https if !{ ssl_fc }
+    default_backend servers
 
-backend http_back
-    server server1 127.0.0.1:80
+frontend https_frontend
+    bind *:443 ssl crt /etc/ssl/certs/stevebanks03.tech.com.pem
+    mode http
+    default_backend servers
+
+backend servers
+    balance roundrobin
+    server 137909-web-01 174.129.54.207:80 check
+    server 137909-web-02 54.208.55.182:80 check
+
+
