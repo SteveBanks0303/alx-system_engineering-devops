@@ -27,7 +27,7 @@ backend servers
     server 137909-web-02 54.208.55.182:80 check
 
 frontend https
-  bind *:443 ssl crt /etc/ssl/certs/stevebanks03.tech.pem
+  bind *:443 ssl crt /etc/letsencrypt/live/stevebanks03.tech/fullchain.pem
   mode http
   option httplog
   default_backend app
